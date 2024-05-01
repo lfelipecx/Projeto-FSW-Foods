@@ -130,7 +130,7 @@ const ProductDetails = ({
             <TimerIcon size={14} />
           </div>
           <p className="text-sm font-semibold">
-            {Number(product.restaurant.deliveryTimeMinutes)} min
+            {product.restaurant.deliveryTimeMinutes} min
           </p>
         </div>
       </Card>
