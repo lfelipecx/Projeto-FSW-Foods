@@ -1,5 +1,5 @@
+import { db } from "@/app/_lib/prisma";
 import { notFound } from "next/navigation";
-import { db } from "../../_lib/prisma";
 import ProductImage from "./_components/product-image";
 import ProductDetails from "./_components/product-details";
 
@@ -10,7 +10,6 @@ interface ProductPageProps {
 }
 
 const ProductPage = async ({ params: { id } }: ProductPageProps) => {
-  //Buscando os dados do restaurante pelo id do produto
   const product = await db.product.findUnique({
     where: {
       id,
@@ -21,7 +20,7 @@ const ProductPage = async ({ params: { id } }: ProductPageProps) => {
   });
 
   if (!product) {
-    return notFound;
+    return notFound();
   }
 
   const juices = await db.product.findMany({
@@ -40,11 +39,11 @@ const ProductPage = async ({ params: { id } }: ProductPageProps) => {
 
   return (
     <div>
-      {/** IMAGEM */}
+      {/* IMAGEM */}
       <ProductImage product={product} />
 
-      {/** TITULO E PREÇO  */}
-      <ProductDetails product={product} complementaryProduct={juices} />
+      {/* TITULO E PREÇO */}
+      <ProductDetails product={product} complementaryProducts={juices} />
     </div>
   );
 };
