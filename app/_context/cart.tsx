@@ -28,7 +28,7 @@ interface ICartContext {
   totalQuantity: number;
   addProductToCart: ({
     product,
-    quantity,
+
     emptyCart,
   }: {
     product: Prisma.ProductGetPayload<{
